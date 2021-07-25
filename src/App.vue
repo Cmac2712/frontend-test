@@ -1,13 +1,18 @@
 <template>
   <div class="container">
-    <List
-      :tasks="tasksNotDone"
-      :list-name="'todo'"
-    />
-    <List
-      :list-name="'done'"
-      :tasks="tasksDone"
-    />
+    <header>
+      <h1>StormID ToDo List</h1>
+    </header>
+    <main>
+      <List
+        :tasks="tasksNotDone"
+        :list-name="'todo'"
+      />
+      <List
+        :list-name="'done'"
+        :tasks="tasksDone"
+      />
+    </main>
   </div>
 </template>
 
