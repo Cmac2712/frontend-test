@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const pkg = require('./package.json')
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
 	entry: './src/js/index.js',
@@ -21,8 +22,14 @@ module.exports = {
 			title: pkg.name,
 			template: './src/index.html',
 			filename: 'index.html'
-		})
+		}),
+    	new VueLoaderPlugin()
 	],
+	resolve: {
+		alias: {
+			'@': path.resolve(__dirname, 'src/')
+		}
+	},
   	module: {
 		rules: [{
             test: /\.scss$/,
@@ -39,12 +46,23 @@ module.exports = {
 		  		loader: 'babel-loader',
 			}
 	  	},
-		 {
+		{
 			test: /\.(ico)$/,
 			use: {
 		  		loader: 'file-loader'
 			}
-		}]
+		},
+		{
+			test: /\.vue$/,
+			loader: 'vue-loader'
+		},
+		{
+			enforce: 'pre',
+			test: /\.(js|vue)$/,
+			loader: 'eslint-loader',
+			exclude: /node_modules/
+      	}
+	]
 	},
 	devtool: 'eval-source-map'
 }
