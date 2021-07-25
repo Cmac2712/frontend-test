@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul :class="listName">
     <li
       v-for="task in tasks"
       :key="task.id"
@@ -13,6 +13,10 @@
 <script>
 export default {
   props: {
+    listName: {
+      required: true,
+      type: String,
+    },
     tasks: {
       required: true,
       type: Array,
