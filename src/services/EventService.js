@@ -9,8 +9,13 @@ const apiClient = axios.create({
   }
 });
 
-export default {
-  getTodoList() {
-    return apiClient.get("/api/todo");
-  }
-};
+export function getToDoList() {
+  return apiClient.get("/api/todo");
+}
+
+export function addTask({ title, importance }) {
+  return apiClient.post("/api/todo", {
+    title,
+    importance
+  })
+}

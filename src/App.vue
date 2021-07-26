@@ -8,6 +8,11 @@
         :tasks="tasksNotDone"
         :list-name="'todo'"
       />
+
+      <AddNew
+        @addNewItem="addNewItemHandler"
+      />
+
       <List
         :list-name="'done'"
         :tasks="tasksDone"
@@ -18,11 +23,13 @@
 
 <script>
 import List from "@/components/List.vue";
-import EventService from "@/services/EventService.js";
+import AddNew from "@/components/AddNew.vue";
+import { getToDoList, addTask } from "@/services/EventService.js";
 
 export default {
   components: {
-    List
+    List,
+    AddNew
   },
   data() {
     return {
@@ -31,20 +38,35 @@ export default {
   },
   computed: {
     tasksDone() {
-      return this.tasks ? this.tasks.filter(task => task.isDone == 1) : null
+      return this.tasks ? this.tasks.filter(task => (task.isDone === "1" || task.isDone === "true")) : null
     },
     tasksNotDone() {
-      return this.tasks ? this.tasks.filter(task => task.isDone == 0) : null
+      return this.tasks ? this.tasks.filter(task => (task.isDone === "0") || task.isDone === "false") : null
     }
   },
   created() {
-    EventService.getTodoList()
-      .then((res) => {
-        this.tasks = this.sort(res.data);
-      });
+    this.fetchToDoList()
   },
   methods: {
-    sort: arr => arr.sort((first, second) => first.importance - second.importance )
+    sort: arr => arr.sort((first, second) => first.importance - second.importance ),
+    fetchToDoList() {
+      getToDoList()
+        .then(res => {
+          this.tasks = this.sort(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    addNewItemHandler (data) {
+      addTask(data)
+        .then(res => {
+          this.fetchToDoList();
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 };
 </script>

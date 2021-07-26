@@ -1,9 +1,9 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 2.5rem);
+    //height: calc(100vh - 2.5rem);
     width: auto;
-    max-width: 500px;
+    max-width: 750px;
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     margin-top: $spacer;
@@ -15,4 +15,30 @@
     margin-top: auto;
     color: #666;
     text-decoration: line-through;
+}
+
+.new-item-add {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: $spacer;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-size: 12px;
+
+    @media screen and (min-width: 768px) {
+        flex-direction: row;
+        padding-left: $spacer * 3;
+        background-image:url("data:image/svg+xml,%3Csvg aria-hidden='true' focusable='false' data-prefix='fal' data-icon='plus' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512' class='svg-inline--fa fa-plus fa-w-12 fa-2x'%3E%3Cpath fill='%23666' d='M376 232H216V72c0-4.42-3.58-8-8-8h-32c-4.42 0-8 3.58-8 8v160H8c-4.42 0-8 3.58-8 8v32c0 4.42 3.58 8 8 8h160v160c0 4.42 3.58 8 8 8h32c4.42 0 8-3.58 8-8V280h160c4.42 0 8-3.58 8-8v-32c0-4.42-3.58-8-8-8z' class=''%3E%3C/path%3E%3C/svg%3E");
+        background-position: left $spacer center;
+    }
+}
+
+.new-item-add > * {
+    margin-bottom: $spacer;
+
+    @media screen and (min-width: 768px) {
+        margin-bottom: 0;
+    }
+
 }
