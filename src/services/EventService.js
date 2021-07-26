@@ -19,3 +19,9 @@ export function addTask({ title, importance }) {
     importance
   })
 }
+
+export function updateDoneStatus({ id, isDone }) {
+  return apiClient.patch(`/api/todo/${id}`, {
+    isDone
+  })
+}

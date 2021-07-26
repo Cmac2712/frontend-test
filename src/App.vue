@@ -12,6 +12,7 @@
         v-if="!isLoading"
         :tasks="tasksNotDone"
         :list-name="'todo'"
+        @toggleDoneStatus="toggleDoneStatusHandler"
       />
 
       <AddNew
@@ -24,6 +25,7 @@
         v-if="!isLoading"
         :list-name="'done'"
         :tasks="tasksDone"
+        @toggleDoneStatus="toggleDoneStatusHandler"
       />
     </main>
   </div>
@@ -33,7 +35,7 @@
 import List from "@/components/List.vue";
 import AddNew from "@/components/AddNew.vue";
 import Loader from "@/components/Loader.vue";
-import { getToDoList, addTask } from "@/services/EventService.js";
+import { getToDoList, addTask, updateDoneStatus } from "@/services/EventService.js";
 
 export default {
   components: {
@@ -61,6 +63,7 @@ export default {
   },
   methods: {
     sort: arr => arr.sort((first, second) => first.importance - second.importance ),
+    // Get list of all tasks
     fetchToDoList() {
       getToDoList()
         .then(res => {
@@ -71,6 +74,7 @@ export default {
           console.log(err);
         });
     },
+    // Add new task
     addNewItemHandler (data) {
       this.isLoadingTask = true;
       addTask(data)
@@ -81,7 +85,20 @@ export default {
         .catch(err => {
           console.log(err);
         });
-    }
+    },
+    // Update task done status
+    toggleDoneStatusHandler ({id, isDone}) {
+      this.isLoadingTask = true;
+
+      updateDoneStatus({
+        id,
+        isDone
+      })
+      .then(res => {
+        this.fetchToDoList();
+        this.isLoadingTask = false;
+      }) 
+    } 
   }
 };
 </script>
