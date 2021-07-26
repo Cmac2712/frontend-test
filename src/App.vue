@@ -13,6 +13,7 @@
         :tasks="tasksNotDone"
         :list-name="'todo'"
         @toggleDoneStatus="toggleDoneStatusHandler"
+        @deleteTask="deleteTaskHandler"
       />
 
       <AddNew
@@ -25,7 +26,9 @@
         v-if="!isLoading"
         :list-name="'done'"
         :tasks="tasksDone"
+        :sort-by="'updatedAt'"
         @toggleDoneStatus="toggleDoneStatusHandler"
+        @deleteTask="deleteTaskHandler"
       />
     </main>
   </div>
@@ -35,7 +38,7 @@
 import List from "@/components/List.vue";
 import AddNew from "@/components/AddNew.vue";
 import Loader from "@/components/Loader.vue";
-import { getToDoList, addTask, updateDoneStatus } from "@/services/EventService.js";
+import { getToDoList, addTask, updateDoneStatus, deleteTask} from "@/services/EventService.js";
 
 export default {
   components: {
@@ -62,12 +65,12 @@ export default {
     this.fetchToDoList()
   },
   methods: {
-    sort: arr => arr.sort((first, second) => first.importance - second.importance ),
     // Get list of all tasks
     fetchToDoList() {
       getToDoList()
         .then(res => {
-          this.tasks = this.sort(res.data);
+          //this.tasks = this.sort(res.data);
+          this.tasks = res.data;
           this.isLoading = false;
         })
         .catch(err => {
@@ -98,7 +101,15 @@ export default {
         this.fetchToDoList();
         this.isLoadingTask = false;
       }) 
-    } 
+    },
+    //
+    deleteTaskHandler (id) {
+      deleteTask(id)
+        .then(res => {
+          this.fetchToDoList();
+          this.isLoadingTask = false;
+        });
+    }
   }
 };
 </script>

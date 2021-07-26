@@ -17,54 +17,24 @@
     text-decoration: line-through;
 }
 
-.new-item-add-container {
-    position: relative;
-    height: 38px;
-}
-
-.new-item-add-container .lds-ring {
-    position: absolute;
-    top: -60%;
-    bottom: auto;
-    left: 0;
-    right: 0;
-    margin: auto;
-    padding: 0;
-    transform: scale(.5);
-    z-index: 5;
-}
-
-.new-item-add-container .lds-ring div {
-    border: 8px solid #aaa;
-    border-color: #aaa transparent transparent transparent;
-}
-
-.new-item-add {
+.list-item {
     display: flex;
-    flex-direction: column;
-    padding-left: 0;
-    padding-right: $spacer;
-    background-color: #fff;
+    align-items: center;
+    justify-content: space-between;
+    //max-width: 750px;
+}
+
+.list-item label {
+    margin-right: auto;
+}
+
+.delete {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    background: transparent;
+    border: none;
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: 12px;
-
-    @media screen and (min-width: 768px) {
-        flex-direction: row;
-        padding-left: $spacer * 3;
-        background-image:url("data:image/svg+xml,%3Csvg aria-hidden='true' focusable='false' data-prefix='fal' data-icon='plus' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512' class='svg-inline--fa fa-plus fa-w-12 fa-2x'%3E%3Cpath fill='%23666' d='M376 232H216V72c0-4.42-3.58-8-8-8h-32c-4.42 0-8 3.58-8 8v160H8c-4.42 0-8 3.58-8 8v32c0 4.42 3.58 8 8 8h160v160c0 4.42 3.58 8 8 8h32c4.42 0 8-3.58 8-8V280h160c4.42 0 8-3.58 8-8v-32c0-4.42-3.58-8-8-8z' class=''%3E%3C/path%3E%3C/svg%3E");
-        background-position: left $spacer center;
-    }
-}
-
-.new-item-add.loading {
-    opacity: .2;
-}
-
-.new-item-add > * {
-    margin-bottom: $spacer;
-
-    @media screen and (min-width: 768px) {
-        margin-bottom: 0;
-    }
-
+    background-image:url("data:image/svg+xml,%3Csvg aria-hidden='true' focusable='false' data-prefix='fal' data-icon='times' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512' class='svg-inline--fa fa-times fa-w-10 fa-2x'%3E%3Cpath fill='%23666' d='M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z' class=''%3E%3C/path%3E%3C/svg%3E");
 }

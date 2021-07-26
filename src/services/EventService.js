@@ -25,3 +25,7 @@ export function updateDoneStatus({ id, isDone }) {
     isDone
   })
 }
+
+export function deleteTask(id) {
+  return apiClient.delete(`/api/todo/${id}`)
+}
