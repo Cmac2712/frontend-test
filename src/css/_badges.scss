@@ -1,0 +1,28 @@
+.badge {
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+
+.badge-medium,
+.bg-warning {
+    background-color: #ffc107!important;
+    color: #333;
+}
+
+.badge-low,
+.bg-success {
+    background-color: #198754!important;
+}
+
+.badge-high,
+.bg-danger {
+    background-color: #dc3545!important;
+}

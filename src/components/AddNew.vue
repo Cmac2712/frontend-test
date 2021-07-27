@@ -14,7 +14,7 @@
           id="new-item-input"
           class="input-group-text"
         >
-          New Item
+          New Task
         </span>
         <input
           id="new-item-input"
@@ -48,13 +48,13 @@
             Please Choose importance...
           </option>
           <option value="0">
-            0
+            High
           </option>
           <option value="1">
-            1
+            Medium
           </option>
           <option value="2">
-            2
+            Low
           </option>
         </select>
       </div>

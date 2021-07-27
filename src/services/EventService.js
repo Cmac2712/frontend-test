@@ -29,3 +29,10 @@ export function updateDoneStatus({ id, isDone }) {
 export function deleteTask(id) {
   return apiClient.delete(`/api/todo/${id}`)
 }
+
+export function updateTask({ id, title, importance }) {
+  return apiClient.patch(`/api/todo/${id}`, {
+    title,
+    importance
+  })
+}

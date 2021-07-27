@@ -1,35 +1,23 @@
 <template>
   <ul :class="listName">
-    <li
+    <ListItem
       v-for="task in sortedTasks"
-      :key="task.id"
-      class="list-item"
-    >
-      <input
-        :id="`task-${task.id}`"
-        class="form-check-input mr-2"
-        type="checkbox"
-        :checked="checkIsDone(task.isDone)"
-        @change="checkboxHandler(task.id, task.isDone)"
-      >
-      <label
-        class="form-check-label"
-        :for="`task-${task.id}`"
-      >
-        {{ task.title }}
-      </label>
-      <button
-        class="delete"
-        @click="deleteTask(task.id)"
-      >
-        <span class="visually-hidden">Delete</span>
-      </button>
-    </li>
+      :key="task.id" 
+      :task="task"
+      @toggleDoneStatus="checkboxHandler"
+      @deleteTask="deleteTask"
+      @updateTask="updateTask"
+    />
   </ul>
 </template>
 
 <script>
+import ListItem from '@/components/ListItem.vue';
+
 export default {  
+  components: {
+    ListItem
+  },
   props: {
     listName: {
       required: true,
@@ -75,14 +63,17 @@ export default {
 
       return 'checked'
     },
-    checkboxHandler (id, isDone) {
+    checkboxHandler ({ id, isDone }) {
       this.$emit('toggleDoneStatus', {
         id,
-        isDone: (isDone === "0" || isDone === "false") ? true : false 
+        isDone
       });
     },
     deleteTask (id) {
       this.$emit('deleteTask', id);
+    },
+    updateTask (task) {
+      this.$emit('updateTask', task);
     }
   }
 };

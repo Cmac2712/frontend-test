@@ -3,12 +3,14 @@
 }
 
 .mr-1 { margin-right: $spacer/4; }
-
 .mr-2 { margin-right: $spacer/3; }
-
 .mr-3 { margin-right: $spacer/2; }
-
 .mr-4 { margin-right: $spacer; }
+
+.ml-1 { margin-left: $spacer/4; }
+.ml-2 { margin-left: $spacer/3; }
+.ml-3 { margin-left: $spacer/2; }
+.ml-4 { margin-left: $spacer; }
 
 .visually-hidden,
 .visually-hidden-focusable:not(:focus):not(:focus-within) {

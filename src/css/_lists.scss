@@ -17,10 +17,11 @@
     text-decoration: line-through;
 }
 
-.list-item {
+.list-item div {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
     //max-width: 750px;
 }
 

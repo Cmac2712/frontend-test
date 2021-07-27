@@ -14,6 +14,7 @@
         :list-name="'todo'"
         @toggleDoneStatus="toggleDoneStatusHandler"
         @deleteTask="deleteTaskHandler"
+        @updateTask="updateTaskHandler"
       />
 
       <AddNew
@@ -29,6 +30,7 @@
         :sort-by="'updatedAt'"
         @toggleDoneStatus="toggleDoneStatusHandler"
         @deleteTask="deleteTaskHandler"
+        @updateTask="updateTaskHandler"
       />
     </main>
   </div>
@@ -38,7 +40,7 @@
 import List from "@/components/List.vue";
 import AddNew from "@/components/AddNew.vue";
 import Loader from "@/components/Loader.vue";
-import { getToDoList, addTask, updateDoneStatus, deleteTask} from "@/services/EventService.js";
+import { getToDoList, addTask, updateDoneStatus, deleteTask, updateTask} from "@/services/EventService.js";
 
 export default {
   components: {
@@ -102,9 +104,17 @@ export default {
         this.isLoadingTask = false;
       }) 
     },
-    //
+    // Delete task
     deleteTaskHandler (id) {
       deleteTask(id)
+        .then(res => {
+          this.fetchToDoList();
+          this.isLoadingTask = false;
+        });
+    },
+    // Update task
+    updateTaskHandler (task) {
+      updateTask(task)
         .then(res => {
           this.fetchToDoList();
           this.isLoadingTask = false;
